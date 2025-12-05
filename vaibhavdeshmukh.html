@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Deshmukh | Linux Administrator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5',   /* Indigo */
+                        secondary: '#10B981', /* Emerald */
+                        accent: '#F472B6',    /* Pink */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- Base & Background Animations --- */
+        body {
+            background-color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Gradient Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #e0e7ff, #d1fae5, #fce7f3, #e0f2fe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Blobs */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: floatBlob 20s infinite alternate;
+        }
+        .blob-1 { top: 10%; left: 10%; width: 300px; height: 300px; background: #a78bfa; border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        .blob-2 { bottom: 20%; right: 10%; width: 350px; height: 350px; background: #34d399; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation-delay: -5s; }
+        
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, 50px) rotate(20deg); }
+        }
+
+        /* --- Glassmorphism --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            border-radius: 24px;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* --- Typography & Elements --- */
+        .text-gradient {
+            background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Cursor Effect for Skills */
+        .skill-pill {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .skill-pill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
+            background: white;
+            border-color: transparent;
+        }
+
+        /* Typing Cursor */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #4F46E5;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Scroll Reveal Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-700">
+
+    <div class="bg-animated"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav class="fixed top-0 w-full z-50 nav-glass px-6 py-4 shadow-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="font-bold text-xl tracking-tight text-slate-800">
+                VD<span class="text-indigo-600">.</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+                <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
+                <a href="#about" class="hover:text-indigo-600 transition-colors">About</a>
+                <a href="#experience" class="hover:text-indigo-600 transition-colors">Experience</a>
+                <a href="#skills" class="hover:text-indigo-600 transition-colors">Skills</a>
+            </div>
+            <a href="mailto:vaibhavd0502@gmail.com" class="px-5 py-2 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-500/30">
+                Contact Me
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-12 max-w-5xl">
+
+        <section id="home" class="text-center py-20 lg:py-32 relative">
+            <div class="glass-card inline-block p-2 rounded-full mb-8 shadow-xl reveal active">
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-5xl font-bold text-white shadow-inner">
+                    VD
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight text-slate-900 reveal active" style="transition-delay: 100ms;">
+                Vaibhav Deshmukh
+            </h1>
+            
+            <div class="h-8 mb-8 reveal active" style="transition-delay: 200ms;">
+                <span class="text-xl md:text-2xl font-semibold text-indigo-600" id="typewriter"></span><span class="cursor">&nbsp;</span>
+            </div>
+
+            <div class="flex justify-center gap-4 reveal active" style="transition-delay: 300ms;">
+                <a href="tel:+918857016884" class="group glass-card px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-white/80 transition-all cursor-pointer text-slate-700">
+                    <i class="fas fa-phone text-indigo-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">+91 8857016884</span>
+                </a>
+                <a href="mailto:vaibhavd0502@gmail.com" class="group glass-card px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-white/80 transition-all cursor-pointer text-slate-700">
+                    <i class="fas fa-envelope text-pink-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">Email Me</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="mb-16 reveal">
+            <div class="glass-card p-8 md:p-10 tilt-card">
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-2 h-8 bg-indigo-500 rounded-full"></span>
+                    About Me
+                </h2>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    I am an experienced <strong class="text-slate-800">Linux Administrator</strong> with a deep expertise in server management, networking, and automation. 
+                    I specialize in deploying robust open-source solutions like <span class="text-indigo-600 font-medium">Mattermost, GitLab, and Wazuh</span>.
+                    My passion lies in securing IT infrastructures and optimizing system performance to ensure seamless business operations.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-16 reveal">
+            <h2 class="text-3xl font-bold mb-8 text-center">Professional Journey</h2>
+            
+            <div class="grid gap-8">
+                <div class="glass-card p-8 relative overflow-hidden tilt-card group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">Linux Admin & Desktop Support</h3>
+                            <div class="text-indigo-600 font-semibold text-lg">Digikore Studios</div>
+                        </div>
+                        <span class="mt-2 md:mt-0 px-4 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold border border-indigo-100">
+                            Feb 2021 - Present
+                        </span>
+                    </div>
+
+                    <ul class="space-y-3 text-slate-600">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                            <span>Administered <strong class="text-slate-800">Linux servers</strong> (CentOS, Ubuntu) & Active Directory/Samba environments.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                            <span>Deployed <strong class="text-slate-800">Ansible</strong> automation for cross-platform deployments.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                            <span>Implemented security protocols via <strong class="text-slate-800">Fortigate 200F</strong> & Wazuh IDS.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-teal-500 mt-1"></i>
+                            <span>Managed full stack of tools: Mattermost, Redmine, GitLab, Kasm, Proxmox.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 relative overflow-hidden tilt-card group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700"></div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">Desktop Support</h3>
+                            <div class="text-pink-600 font-semibold text-lg">Team Computer</div>
+                        </div>
+                        <span class="mt-2 md:mt-0 px-4 py-1 bg-pink-50 text-pink-700 rounded-full text-sm font-bold border border-pink-100">
+                            Nov 2019 - Jan 2021
+                        </span>
+                    </div>
+
+                    <ul class="space-y-3 text-slate-600">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-pink-400 mt-1"></i>
+                            <span>Technical support for hybrid Windows/Linux environments.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-pink-400 mt-1"></i>
+                            <span>Managed Group Policies, LAN/VPN connectivity, and remote troubleshooting.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-16 reveal">
+            <h2 class="text-3xl font-bold mb-8 text-center">Technical Expertise</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-indigo-500">
+                    <i class="fas fa-server text-3xl mb-3 text-indigo-500"></i>
+                    <h4 class="font-bold text-slate-800">Linux Server</h4>
+                    <p class="text-xs text-slate-500">Ubuntu, CentOS</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-emerald-500">
+                    <i class="fas fa-robot text-3xl mb-3 text-emerald-500"></i>
+                    <h4 class="font-bold text-slate-800">Ansible</h4>
+                    <p class="text-xs text-slate-500">Automation</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-rose-500">
+                    <i class="fas fa-shield-alt text-3xl mb-3 text-rose-500"></i>
+                    <h4 class="font-bold text-slate-800">Security</h4>
+                    <p class="text-xs text-slate-500">Wazuh, Fortigate</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-blue-500">
+                    <i class="fas fa-network-wired text-3xl mb-3 text-blue-500"></i>
+                    <h4 class="font-bold text-slate-800">Networking</h4>
+                    <p class="text-xs text-slate-500">VLAN, VPN</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-yellow-500">
+                    <i class="fas fa-terminal text-3xl mb-3 text-yellow-500"></i>
+                    <h4 class="font-bold text-slate-800">Bash Scripting</h4>
+                    <p class="text-xs text-slate-500">Shell</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-cyan-500">
+                    <i class="fas fa-users-cog text-3xl mb-3 text-cyan-500"></i>
+                    <h4 class="font-bold text-slate-800">Directory</h4>
+                    <p class="text-xs text-slate-500">AD & LDAP</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-purple-500">
+                    <i class="fas fa-hdd text-3xl mb-3 text-purple-500"></i>
+                    <h4 class="font-bold text-slate-800">Virtualization</h4>
+                    <p class="text-xs text-slate-500">Proxmox</p>
+                </div>
+                <div class="glass-card p-4 text-center skill-pill border-l-4 border-orange-500">
+                    <i class="fas fa-database text-3xl mb-3 text-orange-500"></i>
+                    <h4 class="font-bold text-slate-800">Backups</h4>
+                    <p class="text-xs text-slate-500">Disaster Recovery</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-8 mb-16 reveal">
+            <div class="glass-card p-8 tilt-card">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <i class="fas fa-graduation-cap text-indigo-500"></i> Education
+                </h3>
+                <div class="space-y-6">
+                    <div class="relative pl-6 border-l-2 border-indigo-100">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-500"></div>
+                        <h4 class="font-bold text-slate-800">BCA (Computer Application)</h4>
+                        <p class="text-sm text-indigo-600 font-medium">SRTMUN | 2017 - 2019</p>
+                    </div>
+                    <div class="relative pl-6 border-l-2 border-indigo-100">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-500"></div>
+                        <h4 class="font-bold text-slate-800">Hardware & Networking Diploma</h4>
+                        <p class="text-sm text-indigo-600 font-medium">Borcelle University</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 tilt-card">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <i class="fas fa-certificate text-pink-500"></i> Certifications
+                </h3>
+                <div class="bg-white/50 p-4 rounded-xl border border-white mb-3 flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-800">Hardware Networking</h4>
+                        <p class="text-xs text-slate-500">Maharashtra State Government</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-slate-500 text-sm pb-8 reveal">
+            <p>&copy; 2024 Vaibhav Deshmukh. Crafted with <i class="fas fa-heart text-red-400"></i> & Code.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- 1. Typewriter Effect ---
+        const textElement = document.getElementById("typewriter");
+        const textToType = "Linux Administrator & Support Specialist";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < textToType.length) {
+                textElement.innerHTML += textToType.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50); // Typing speed
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeWriter, 1000);
+
+        // --- 2. Scroll Reveal Animation ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- 3. 3D Tilt Effect on Cards (Vanilla JS, no library) ---
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+    </script>
+</body>
+</html>
