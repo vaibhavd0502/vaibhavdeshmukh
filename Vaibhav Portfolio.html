@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Deshmukh | System Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0B1120',      /* Deepest Blue/Black */
+                            card: '#151E32',    /* Lighter Panel */
+                            border: '#2A3655',  /* Border Color */
+                        },
+                        tech: {
+                            green: '#4ADE80',   /* Terminal Green */
+                            blue: '#38BDF8',    /* React/Docker Blue */
+                            purple: '#A78BFA',  /* Keyword Purple */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B1120;
+            color: #94A3B8;
+        }
+
+        /* --- Terminal Window Styling --- */
+        .terminal-window {
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .terminal-header {
+            background: #252526;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .window-dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        /* --- Typing Animation --- */
+        .typing-cursor::after {
+            content: '█';
+            animation: blink 1s step-start infinite;
+            color: #4ADE80;
+            margin-left: 5px;
+        }
+        
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- Tech Cards --- */
+        .tech-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid #2A3655;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            border-color: #38BDF8;
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        /* --- Section Dividers --- */
+        .section-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2A3655, transparent);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 bg-[#0B1120]/90 backdrop-blur border-b border-dark-border">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="font-mono text-tech-green font-bold text-lg">
+                &lt;VD /&gt;
+            </div>
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="#about" class="hover:text-white transition-colors">~/About</a>
+                <a href="#skills" class="hover:text-white transition-colors">~/Skills</a>
+                <a href="#experience" class="hover:text-white transition-colors">~/Experience</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 pt-32 pb-20 max-w-5xl">
+
+        <section class="grid md:grid-cols-2 gap-12 items-center mb-20">
+            <div>
+                <p class="text-tech-blue font-mono mb-4">Hello, World! I am</p>
+                <h1 class="text-5xl font-bold text-white mb-6">Vaibhav Deshmukh.</h1>
+                <h2 class="text-2xl text-slate-400 mb-6">
+                    I build and secure <span class="text-tech-green font-mono">Linux Infrastructure</span>.
+                </h2>
+                <p class="text-slate-500 leading-relaxed mb-8 max-w-md">
+                    Specialized in Linux Administration, Ansible Automation, and Enterprise Security. I turn complex server requirements into stable, automated systems.
+                </p>
+                <div class="flex gap-4">
+                    <a href="mailto:vaibhavd0502@gmail.com" class="px-6 py-3 bg-tech-blue/10 text-tech-blue border border-tech-blue/50 rounded hover:bg-tech-blue hover:text-white transition-all font-mono text-sm">
+                        Contact_Me.sh
+                    </a>
+                    <a href="#experience" class="px-6 py-3 text-slate-300 hover:text-white transition-all font-mono text-sm flex items-center gap-2">
+                        View_Log <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="window-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <div class="text-xs text-slate-500 mx-auto font-mono">root@vaibhav-server:~</div>
+                </div>
+                <div class="p-6 text-sm font-mono leading-relaxed">
+                    <div class="mb-4">
+                        <span class="text-tech-green">root@server:~$</span> <span class="typing-cursor">cat profile.json</span>
+                    </div>
+                    <div class="text-slate-300 fade-in-code hidden" id="code-block">
+                        <span class="text-yellow-500">{</span><br>
+                        &nbsp;&nbsp;<span class="text-tech-blue">"role"</span>: <span class="text-tech-green">"Linux Administrator"</span>,<br>
+                        &nbsp;&nbsp;<span class="text-tech-blue">"location"</span>: <span class="text-tech-green">"Pune, MH"</span>,<br>
+                        &nbsp;&nbsp;<span class="text-tech-blue">"uptime"</span>: <span class="text-tech-green">"4+ Years"</span>,<br>
+                        &nbsp;&nbsp;<span class="text-tech-blue">"stack"</span>: <span class="text-yellow-500">[</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">"CentOS"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">"Ansible"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">"Wazuh"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-white">"Docker"</span><br>
+                        &nbsp;&nbsp;<span class="text-yellow-500">]</span><br>
+                        <span class="text-yellow-500">}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-line"></div>
+
+        <section id="skills" class="mb-20">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                <span class="text-tech-purple font-mono">01.</span> Technical Arsenal
+            </h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="tech-card p-5 rounded-lg">
+                    <i class="fas fa-server text-3xl text-tech-green mb-4"></i>
+                    <h4 class="text-white font-bold mb-1">Linux OS</h4>
+                    <p class="text-xs font-mono text-slate-500">CentOS, Ubuntu, Debian</p>
+                </div>
+                <div class="tech-card p-5 rounded-lg">
+                    <i class="fas fa-robot text-3xl text-tech-blue mb-4"></i>
+                    <h4 class="text-white font-bold mb-1">Automation</h4>
+                    <p class="text-xs font-mono text-slate-500">Ansible, Bash</p>
+                </div>
+                <div class="tech-card p-5 rounded-lg">
+                    <i class="fas fa-lock text-3xl text-red-400 mb-4"></i>
+                    <h4 class="text-white font-bold mb-1">Security</h4>
+                    <p class="text-xs font-mono text-slate-500">Wazuh, Fortigate</p>
+                </div>
+                <div class="tech-card p-5 rounded-lg">
+                    <i class="fas fa-project-diagram text-3xl text-tech-purple mb-4"></i>
+                    <h4 class="text-white font-bold mb-1">DevOps</h4>
+                    <p class="text-xs font-mono text-slate-500">GitLab, Mattermost</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                <span class="text-tech-purple font-mono">02.</span> Experience Log
+            </h3>
+
+            <div class="space-y-6">
+                <div class="group relative bg-dark-card border border-dark-border p-6 rounded-lg hover:border-tech-green/50 transition-colors">
+                    <div class="absolute -left-3 top-8 w-6 h-1 bg-tech-green rounded hidden md:block group-hover:w-8 transition-all"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Linux Admin & Support</h4>
+                            <a href="#" class="text-tech-green font-mono text-sm hover:underline">@Digikore Studios</a>
+                        </div>
+                        <span class="text-xs font-mono text-slate-500 border border-dark-border px-3 py-1 rounded-full h-fit mt-2 md:mt-0">
+                            2021 - PRESENT
+                        </span>
+                    </div>
+                    
+                    <ul class="space-y-3 text-sm text-slate-400 list-none">
+                        <li class="flex items-start gap-3">
+                            <span class="text-tech-purple font-mono mt-1">></span>
+                            <span>Managed on-premise infrastructure hosting Mattermost, Redmine, and GitLab.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-tech-purple font-mono mt-1">></span>
+                            <span>Implemented <strong>Wazuh IDS</strong> and Fortigate firewall rules for improved security posture.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-tech-purple font-mono mt-1">></span>
+                            <span>Reduced deployment time using <strong>Ansible</strong> for automated patching and config management.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="group relative bg-dark-card border border-dark-border p-6 rounded-lg hover:border-tech-blue/50 transition-colors">
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Desktop Support</h4>
+                            <a href="#" class="text-tech-blue font-mono text-sm hover:underline">@Team Computer</a>
+                        </div>
+                        <span class="text-xs font-mono text-slate-500 border border-dark-border px-3 py-1 rounded-full h-fit mt-2 md:mt-0">
+                            2019 - 2021
+                        </span>
+                    </div>
+                    
+                    <ul class="space-y-3 text-sm text-slate-400 list-none">
+                        <li class="flex items-start gap-3">
+                            <span class="text-tech-purple font-mono mt-1">></span>
+                            <span>L1/L2 Support for hybrid Windows/Linux environments.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-tech-purple font-mono mt-1">></span>
+                            <span>Managed Active Directory users and network connectivity (LAN/VPN).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-line"></div>
+
+        <footer class="text-center pb-10">
+            <h2 class="text-white font-bold text-2xl mb-6">Let's Connect</h2>
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="tel:+918857016884" class="text-slate-400 hover:text-tech-green text-2xl transition-colors">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="mailto:vaibhavd0502@gmail.com" class="text-slate-400 hover:text-tech-green text-2xl transition-colors">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p class="font-mono text-xs text-slate-600">
+                Created by Vaibhav Deshmukh <br>
+                <span class="text-tech-blue">System.exit(0);</span>
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Simple script to reveal the code block after the "typing" animation
+        setTimeout(() => {
+            document.querySelector('.typing-cursor').classList.remove('typing-cursor');
+            document.getElementById('code-block').classList.remove('hidden');
+        }, 1500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Deshmukh - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (optional, but good for professional look) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right bottom, #e0f7fa, #bbdefb); /* Soft gradient background */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0; /* Add padding for overall layout */
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 0.75rem; /* Increased padding */
+            margin-bottom: 2rem; /* More space below title */
+            font-size: 1.875rem; /* Larger title font */
+            font-weight: 700; /* Bolder */
+            color: #2c3e50; /* Darker text for titles */
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 4rem; /* Longer underline */
+            height: 5px; /* Thicker underline */
+            background-color: #3498db; /* Brighter blue underline */
+            border-radius: 9999px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); /* Stronger, more realistic shadow */
+            padding: 2.5rem; /* Increased padding */
+            margin-bottom: 2rem; /* More space between cards */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Subtle lift on hover */
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15), 0 6px 8px rgba(0, 0, 0, 0.08);
+        }
+        .experience-item {
+            border-left: 5px solid #3498db; /* Brighter blue line for experience */
+            padding-left: 1.25rem; /* More padding */
+            margin-bottom: 2rem; /* More space between experience items */
+            position: relative;
+        }
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+        .experience-item::before {
+            content: '•'; /* Bullet point for timeline effect */
+            position: absolute;
+            left: -0.5rem; /* Adjust position */
+            top: 0;
+            font-size: 1.5rem;
+            color: #3498db;
+            line-height: 1;
+        }
+        .skill-badge {
+            background-color: #e3f2fd; /* Lighter blue background */
+            color: #1a237e; /* Darker blue text */
+            padding: 0.6rem 1.2rem; /* Larger padding */
+            border-radius: 9999px;
+            font-weight: 600; /* Bolder text */
+            display: inline-block;
+            margin: 0.4rem; /* More margin */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .skill-badge:hover {
+            background-color: #bbdefb; /* Hover effect */
+            transform: scale(1.05);
+        }
+        .contact-icon {
+            color: #3498db; /* Blue icons */
+            margin-right: 0.75rem;
+        }
+        a.hover:text-blue-500 {
+            color: #4a5568; /* Default link color */
+        }
+        a.hover:text-blue-500:hover {
+            color: #3498db; /* Hover color */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-10 max-w-5xl">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12 p-8 bg-white rounded-2xl shadow-2xl">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-3 leading-tight">VAIBHAV DESHMUKH</h1>
+            <p class="text-2xl sm:text-3xl text-blue-700 font-bold mb-6 tracking-wide">LINUX ADMIN & DESKTOP SUPPORT</p>
+            <div class="flex flex-wrap justify-center gap-6 text-lg text-gray-700">
+                <a href="tel:+918857016884" class="flex items-center hover:text-blue-600 transition-colors duration-300">
+                    <i class="fas fa-phone contact-icon"></i>
+                    +91 8857016884
+                </a>
+                <a href="mailto:vaibhavd0502@gmail.com" class="flex items-center hover:text-blue-600 transition-colors duration-300">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    vaibhavd0502@gmail.com
+                </a>
+                <span class="flex items-center">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    Sirvi Niwas, Somnath Nagar, Wagaon Sheri, Pune-411014
+                </span>
+            </div>
+        </header>
+
+        <!-- About Me Section -->
+        <section class="card">
+            <h2 class="section-title">ABOUT ME</h2>
+            <p class="text-gray-700 leading-relaxed text-lg">
+                Experienced Linux Administrator with expertise in server management, networking, automation (Ansible), and cybersecurity.
+                Skilled in configuring and maintaining Mattermost, Redmine, GitLab, Proxmox, and Wazuh.
+                Passionate about system security, troubleshooting, and optimizing IT infrastructure.
+                Seeking to leverage my skills in a dynamic environment.
+            </p>
+        </section>
+
+        <!-- Education Section -->
+        <section class="card">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Bachelor of Computer Application</h3>
+                <p class="text-blue-700 text-lg">SRTMUN</p>
+                <p class="text-gray-600 text-base mb-2">2017-2019</p>
+                <p class="text-gray-700 leading-relaxed">Computer science, programming, and IT concepts. It covers software development, networking, database management, and cyber security.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800">Advance Hardware & Networking Diploma</h3>
+                <p class="text-blue-700 text-lg">Borcelle University</p>
+                <p class="text-gray-700 leading-relaxed mt-1">Experienced in advanced hardware troubleshooting, network configuration (LAN, WAN, VLAN, VPN), server administration (Windows & Linux), and security implementation (firewalls, TACACS, Wazuh).</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="card">
+            <h2 class="section-title">EXPERIENCE</h2>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-semibold text-gray-800">Linux Admin & Desktop Support</h3>
+                <p class="text-blue-700 text-lg">Digikore Studios</p>
+                <p class="text-gray-600 text-base mb-2">FEB 2021 - NOW</p>
+                <ul class="list-disc list-inside text-gray-700 mt-2 space-y-2">
+                    <li>Managed Linux servers (CentOS, Ubuntu, Debian) in an on-premises environment.</li>
+                    <li>Handled user authentication via Active Directory & Samba.</li>
+                    <li>Deployed and maintained Mattermost, Redmine, GitLab, Kasm, Proxmox, and Wazuh.</li>
+                    <li>Configured Nginx and Apache SSL for secure access.</li>
+                    <li>Automated deployments using Ansible for Linux & Windows clients.</li>
+                    <li>Managed Zimbra Mail Server, including SMTP & spam filtering.</li>
+                    <li>Enhanced security with firewall rules, Wazuh IDS, and phishing analysis.</li>
+                    <li>Maintain Firewall Fortigate 200F.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-semibold text-gray-800">Desktop Support</h3>
+                <p class="text-blue-700 text-lg">Team Computer</p>
+                <p class="text-gray-600 text-base mb-2">Nov 2019 - Jan 2021</p>
+                <ul class="list-disc list-inside text-gray-700 mt-2 space-y-2">
+                    <li>Provided technical support for Windows & Linux desktops, ensuring minimal downtime.</li>
+                    <li>Installed, configured, and troubleshot software, hardware, and peripherals.</li>
+                    <li>Managed user accounts, permissions, and group policies in Active Directory.</li>
+                    <li>Resolved network connectivity issues, including LAN, Wi-Fi, and VPN configurations.</li>
+                    <li>Assisted with email configuration and troubleshooting (Outlook, Zimbra, etc.).</li>
+                    <li>Performed OS installations, upgrades, and patch management.</li>
+                    <li>Configured and supported remote access solutions (RDP, AnyDesk, VPN).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="card">
+            <h2 class="section-title">SKILLS</h2>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span class="skill-badge">Quick Learner</span>
+                <span class="skill-badge">Responsible</span>
+                <span class="skill-badge">Communication</span>
+                <span class="skill-badge">Innovation</span>
+                <span class="skill-badge">Analytics</span>
+                <span class="skill-badge">Teamwork</span>
+                <span class="skill-badge">Problem Solving</span>
+                <span class="skill-badge">Collaboration</span>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section class="card">
+            <h2 class="section-title">TECHNICAL SKILLS</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                <li>Installing and Configuring Scanner, Printer and Networking Devices.</li>
+                <li>Installing and Troubleshooting RAM, Hard Disk, Optical Disk, SMPS, and Monitor.</li>
+                <li>Assembling and Disassembling System.</li>
+                <li>Installing and Configure ADDS, DNS, DHCP & Terminal Service.</li>
+                <li>Shell Scripting.</li>
+                <li>Working With Linux Operating System.</li>
+                <li>Configure and Maintain Samba & NFS server.</li>
+                <li>Managing User Accounts and Assign Permissions LDAP.</li>
+                <li>Implemented backup & disaster recovery solutions.</li>
+            </ul>
+        </section>
+
+        <!-- Certification Courses Section -->
+        <section class="card">
+            <h2 class="section-title">CERTIFICATION COURSES</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                <li>Certification course in Hardware Networking under the Maharashtra State Govt.</li>
+                <li>MSCIT Pass with 92% in 2014.</li>
+            </ul>
+        </section>
+
+        <!-- Declaration (Optional, can be removed for a portfolio) -->
+        <section class="card text-sm text-gray-600 italic text-center">
+            <p>I hereby declare that the above mentioned information is correct up to my knowledge and I bear the responsibility for the correctness of the above mentioned particulars.</p>
+        </section>
+
+    </div>
+
+</body>
+</html>
+
