@@ -135,9 +135,7 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             
             <a href="#home" class="block w-12 h-12 rounded-full overflow-hidden border-2 border-indigo-600 shadow-md hover:scale-105 transition-transform">
-                <img src="https://vaibhavdeshmukh.vercel.app/vaibhav.jpeg" 
-                     alt="Vaibhav Deshmukh Logo" 
-                     class="w-full h-full object-cover">
+                <img id="vimg">
             </a>
 
             <div class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
@@ -157,9 +155,7 @@
         <section id="home" class="text-center py-20 lg:py-32 relative">
             <div class="glass-card inline-block p-2 rounded-full mb-8 shadow-xl reveal active">
                 <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-xl">
-                    <img src="/public/assest/vaibhav.jpeg" 
-                         alt="Vaibhav Deshmukh" 
-                         class="w-full h-full object-cover">
+                    <img id="vimg1">
                 </div>
             </div>
 
@@ -423,6 +419,19 @@
             });
         });
 
+        fetch('components/data.json')
+        .then(res=> res.json())
+        .then(data =>{
+            document.getElementById("vimg").src = data.imgsrc;
+        })
+        .catch(error=>console.log("not found"));
+
+        fetch('components/data.json')
+        .then(res=> res.json())
+        .then(data =>{
+            document.getElementById("vimg1").src = data.imgsrc;
+        })
+        .catch(error=>console.log("not found"));
     </script>
 </body>
 </html>
