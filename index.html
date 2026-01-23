@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -18,9 +17,9 @@
                         sans: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#4F46E5',
-                        secondary: '#10B981',
-                        accent: '#F472B6',
+                        primary: '#4F46E5',   /* Indigo */
+                        secondary: '#10B981', /* Emerald */
+                        accent: '#F472B6',    /* Pink */
                     }
                 }
             }
@@ -28,11 +27,13 @@
     </script>
 
     <style>
+        /* --- Base & Background Animations --- */
         body {
             background-color: #f3f4f6;
             overflow-x: hidden;
         }
 
+        /* Animated Gradient Background */
         .bg-animated {
             position: fixed;
             top: 0;
@@ -51,6 +52,7 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Floating Blobs */
         .blob {
             position: absolute;
             filter: blur(80px);
@@ -66,6 +68,7 @@
             100% { transform: translate(30px, 50px) rotate(20deg); }
         }
 
+        /* --- Glassmorphism --- */
         .glass-card {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(16px);
@@ -78,6 +81,7 @@
             perspective: 1000px;
         }
 
+        /* --- Typography & Elements --- */
         .text-gradient {
             background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
             -webkit-background-clip: text;
@@ -90,6 +94,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
+        /* Cursor Effect for Skills */
         .skill-pill {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -100,6 +105,7 @@
             border-color: transparent;
         }
 
+        /* Typing Cursor */
         .cursor {
             display: inline-block;
             width: 3px;
@@ -108,6 +114,7 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        /* Scroll Reveal Class */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -174,13 +181,6 @@
                     <i class="fas fa-envelope text-pink-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-medium">Email Me</span>
                 </a>
-            </div>
-
-            <div class="mt-6 reveal active" style="transition-delay: 400ms;">
-                <button id="downloadBtn" class="group glass-card px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer text-slate-700 font-semibold shadow-lg hover:shadow-indigo-500/30 mx-auto">
-                    <i class="fas fa-download text-indigo-500 group-hover:text-white group-hover:scale-110 transition-all"></i>
-                    <span>Download Resume</span>
-                </button>
             </div>
         </section>
 
@@ -370,6 +370,7 @@
     </main>
 
     <script>
+        // --- 1. Typewriter Effect ---
         const textElement = document.getElementById("typewriter");
         const textToType = "Linux Administrator & Support Specialist";
         let index = 0;
@@ -378,12 +379,14 @@
             if (index < textToType.length) {
                 textElement.innerHTML += textToType.charAt(index);
                 index++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, 50); // Typing speed
             }
         }
         
+        // Start typing after a short delay
         setTimeout(typeWriter, 1000);
 
+        // --- 2. Scroll Reveal Animation ---
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -393,13 +396,14 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
+                    observer.unobserve(entry.target); // Only animate once
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // --- 3. 3D Tilt Effect on Cards (Vanilla JS, no library) ---
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -409,7 +413,7 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
                 const rotateY = ((x - centerX) / centerX) * 5;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
@@ -420,100 +424,6 @@
             });
         });
 
-        // Resume Generation Function
-        document.getElementById('downloadBtn').addEventListener('click', function() {
-            if (typeof window.jspdf === 'undefined') {
-                alert('Please wait, loading PDF library...');
-                setTimeout(() => this.click(), 1000);
-                return;
-            }
-            
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            let yPos = 20;
-            const leftMargin = 20;
-            const pageWidth = 190;
-            
-            doc.setFillColor(79, 70, 229);
-            doc.rect(0, 0, 210, 40, 'F');
-            
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(24);
-            doc.setFont(undefined, 'bold');
-            doc.text('VAIBHAV DESHMUKH', 105, 20, { align: 'center' });
-            
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'normal');
-            doc.text('Linux Administrator & Support Specialist', 105, 28, { align: 'center' });
-            
-            doc.setFontSize(9);
-            doc.text('+91 8857016884  |  vaibhavd0502@gmail.com', 105, 35, { align: 'center' });
-            
-            yPos = 50;
-            doc.setTextColor(0, 0, 0);
-            
-            doc.setFontSize(14);
-            doc.setFont(undefined, 'bold');
-            doc.setTextColor(79, 70, 229);
-            doc.text('PROFESSIONAL SUMMARY', leftMargin, yPos);
-            yPos += 8;
-            
-            doc.setFontSize(10);
-            doc.setFont(undefined, 'normal');
-            doc.setTextColor(0, 0, 0);
-            const summary = 'Experienced Linux Administrator with 5+ years of expertise in server management, networking, and automation. Specialized in deploying robust open-source solutions including Mattermost, GitLab, and Wazuh. Proficient in securing IT infrastructures and optimizing system performance.';
-            const summaryLines = doc.splitTextToSize(summary, pageWidth - 20);
-            doc.text(summaryLines, leftMargin, yPos);
-            yPos += summaryLines.length * 5 + 5;
-            
-            doc.setFontSize(14);
-            doc.setFont(undefined, 'bold');
-            doc.setTextColor(79, 70, 229);
-            doc.text('PROFESSIONAL EXPERIENCE', leftMargin, yPos);
-            yPos += 8;
-            
-            doc.setFontSize(11);
-            doc.setFont(undefined, 'bold');
-            doc.setTextColor(0, 0, 0);
-            doc.text('Linux Administrator & Desktop Support', leftMargin, yPos);
-            doc.setFont(undefined, 'normal');
-            doc.setFontSize(10);
-            doc.text('Feb 2021 - Present', 150, yPos);
-            yPos += 5;
-            
-            doc.setTextColor(79, 70, 229);
-            doc.text('Digikore Studios', leftMargin, yPos);
-            yPos += 6;
-            
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(9);
-            const exp1 = [
-                '• Administered Linux servers (CentOS, Ubuntu) and Active Directory/Samba environments',
-                '• Deployed Ansible automation for cross-platform deployments and configuration management',
-                '• Implemented security protocols via Fortigate 200F firewall and Wazuh IDS',
-                '• Managed full stack: Mattermost, Redmine, GitLab, Kasm, Proxmox virtualization'
-            ];
-            exp1.forEach(line => {
-                doc.text(line, leftMargin + 2, yPos);
-                yPos += 5;
-            });
-            yPos += 3;
-            
-            doc.setFontSize(11);
-            doc.setFont(undefined, 'bold');
-            doc.text('Desktop Support Engineer', leftMargin, yPos);
-            doc.setFont(undefined, 'normal');
-            doc.setFontSize(10);
-            doc.text('Nov 2019 - Jan 2021', 150, yPos);
-            yPos += 5;
-            
-            doc.setTextColor(79, 70, 229);
-            doc.text('Team Computer', leftMargin, yPos);
-            yPos += 6;
-            
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(9);
-            const exp2 = [
-                '• Provided technical support for hybrid Windows/Linux environments',
-                '• Managed Group Policies, LAN/VPN connectivity, and remote troublesho
+    </script>
+</body>
+</html>
