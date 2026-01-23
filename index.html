@@ -6,6 +6,7 @@
     <title>Vaibhav Deshmukh | Linux Administrator</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234F46E5'/%3E%3Ctext x='50' y='70' font-family='sans-serif' font-weight='bold' font-size='45' text-anchor='middle' fill='white'%3EVD%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -181,6 +182,13 @@
                     <i class="fas fa-envelope text-pink-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-medium">Email Me</span>
                 </a>
+            </div>
+
+            <div class="mt-6 reveal active" style="transition-delay: 400ms;">
+                <button onclick="generateResume()" class="group glass-card px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer text-slate-700 font-semibold shadow-lg hover:shadow-indigo-500/30 mx-auto">
+                    <i class="fas fa-download text-indigo-500 group-hover:text-white group-hover:scale-110 transition-all"></i>
+                    <span>Download Resume</span>
+                </button>
             </div>
         </section>
 
@@ -425,5 +433,91 @@
         });
 
     </script>
-</body>
-</html>
+
+    <script>
+        // Generate Professional Resume PDF
+        function generateResume() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            let yPos = 20;
+            const leftMargin = 20;
+            const pageWidth = 190;
+            
+            // Header
+            doc.setFillColor(79, 70, 229);
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(24);
+            doc.setFont(undefined, 'bold');
+            doc.text('VAIBHAV DESHMUKH', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            doc.text('Linux Administrator & Support Specialist', 105, 28, { align: 'center' });
+            
+            doc.setFontSize(9);
+            doc.text('+91 8857016884  |  vaibhavd0502@gmail.com', 105, 35, { align: 'center' });
+            
+            yPos = 50;
+            doc.setTextColor(0, 0, 0);
+            
+            // Professional Summary
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor(79, 70, 229);
+            doc.text('PROFESSIONAL SUMMARY', leftMargin, yPos);
+            yPos += 8;
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(0, 0, 0);
+            const summary = 'Experienced Linux Administrator with 5+ years of expertise in server management, networking, and automation. Specialized in deploying robust open-source solutions including Mattermost, GitLab, and Wazuh. Proficient in securing IT infrastructures and optimizing system performance.';
+            const summaryLines = doc.splitTextToSize(summary, pageWidth - 20);
+            doc.text(summaryLines, leftMargin, yPos);
+            yPos += summaryLines.length * 5 + 5;
+            
+            // Professional Experience
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor(79, 70, 229);
+            doc.text('PROFESSIONAL EXPERIENCE', leftMargin, yPos);
+            yPos += 8;
+            
+            // Job 1
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor(0, 0, 0);
+            doc.text('Linux Administrator & Desktop Support', leftMargin, yPos);
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(10);
+            doc.text('Feb 2021 - Present', 150, yPos);
+            yPos += 5;
+            
+            doc.setTextColor(79, 70, 229);
+            doc.text('Digikore Studios', leftMargin, yPos);
+            yPos += 6;
+            
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(9);
+            const exp1 = [
+                '• Administered Linux servers (CentOS, Ubuntu) and Active Directory/Samba environments',
+                '• Deployed Ansible automation for cross-platform deployments and configuration management',
+                '• Implemented security protocols via Fortigate 200F firewall and Wazuh IDS',
+                '• Managed full stack: Mattermost, Redmine, GitLab, Kasm, Proxmox virtualization'
+            ];
+            exp1.forEach(line => {
+                doc.text(line, leftMargin + 2, yPos);
+                yPos += 5;
+            });
+            yPos += 3;
+            
+            // Job 2
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'bold');
+            doc.text('Desktop Support Engineer', leftMargin, yPos);
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(10);
+            doc.text('Nov 2019 - Jan 2021', 150, yPos);
+            yPos += 5;
