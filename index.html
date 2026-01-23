@@ -6,9 +6,9 @@
     <title>Vaibhav Deshmukh | Linux Administrator</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234F46E5'/%3E%3Ctext x='50' y='70' font-family='sans-serif' font-weight='bold' font-size='45' text-anchor='middle' fill='white'%3EVD%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -18,9 +18,9 @@
                         sans: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#4F46E5',   /* Indigo */
-                        secondary: '#10B981', /* Emerald */
-                        accent: '#F472B6',    /* Pink */
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        accent: '#F472B6',
                     }
                 }
             }
@@ -28,13 +28,11 @@
     </script>
 
     <style>
-        /* --- Base & Background Animations --- */
         body {
             background-color: #f3f4f6;
             overflow-x: hidden;
         }
 
-        /* Animated Gradient Background */
         .bg-animated {
             position: fixed;
             top: 0;
@@ -53,7 +51,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Blobs */
         .blob {
             position: absolute;
             filter: blur(80px);
@@ -69,7 +66,6 @@
             100% { transform: translate(30px, 50px) rotate(20deg); }
         }
 
-        /* --- Glassmorphism --- */
         .glass-card {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(16px);
@@ -82,7 +78,6 @@
             perspective: 1000px;
         }
 
-        /* --- Typography & Elements --- */
         .text-gradient {
             background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
             -webkit-background-clip: text;
@@ -95,7 +90,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Cursor Effect for Skills */
         .skill-pill {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -106,7 +100,6 @@
             border-color: transparent;
         }
 
-        /* Typing Cursor */
         .cursor {
             display: inline-block;
             width: 3px;
@@ -115,7 +108,6 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Scroll Reveal Class */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -185,7 +177,7 @@
             </div>
 
             <div class="mt-6 reveal active" style="transition-delay: 400ms;">
-                <button onclick="generateResume()" class="group glass-card px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer text-slate-700 font-semibold shadow-lg hover:shadow-indigo-500/30 mx-auto">
+                <button id="downloadBtn" class="group glass-card px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer text-slate-700 font-semibold shadow-lg hover:shadow-indigo-500/30 mx-auto">
                     <i class="fas fa-download text-indigo-500 group-hover:text-white group-hover:scale-110 transition-all"></i>
                     <span>Download Resume</span>
                 </button>
@@ -378,7 +370,6 @@
     </main>
 
     <script>
-        // --- 1. Typewriter Effect ---
         const textElement = document.getElementById("typewriter");
         const textToType = "Linux Administrator & Support Specialist";
         let index = 0;
@@ -387,14 +378,12 @@
             if (index < textToType.length) {
                 textElement.innerHTML += textToType.charAt(index);
                 index++;
-                setTimeout(typeWriter, 50); // Typing speed
+                setTimeout(typeWriter, 50);
             }
         }
         
-        // Start typing after a short delay
         setTimeout(typeWriter, 1000);
 
-        // --- 2. Scroll Reveal Animation ---
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -404,14 +393,13 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Only animate once
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // --- 3. 3D Tilt Effect on Cards (Vanilla JS, no library) ---
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -421,7 +409,7 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+                const rotateX = ((y - centerY) / centerY) * -5;
                 const rotateY = ((x - centerX) / centerX) * 5;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
@@ -432,11 +420,14 @@
             });
         });
 
-    </script>
-
-    <script>
-        // Generate Professional Resume PDF
-        function generateResume() {
+        // Resume Generation Function
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            if (typeof window.jspdf === 'undefined') {
+                alert('Please wait, loading PDF library...');
+                setTimeout(() => this.click(), 1000);
+                return;
+            }
+            
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
@@ -444,7 +435,6 @@
             const leftMargin = 20;
             const pageWidth = 190;
             
-            // Header
             doc.setFillColor(79, 70, 229);
             doc.rect(0, 0, 210, 40, 'F');
             
@@ -463,7 +453,6 @@
             yPos = 50;
             doc.setTextColor(0, 0, 0);
             
-            // Professional Summary
             doc.setFontSize(14);
             doc.setFont(undefined, 'bold');
             doc.setTextColor(79, 70, 229);
@@ -478,14 +467,12 @@
             doc.text(summaryLines, leftMargin, yPos);
             yPos += summaryLines.length * 5 + 5;
             
-            // Professional Experience
             doc.setFontSize(14);
             doc.setFont(undefined, 'bold');
             doc.setTextColor(79, 70, 229);
             doc.text('PROFESSIONAL EXPERIENCE', leftMargin, yPos);
             yPos += 8;
             
-            // Job 1
             doc.setFontSize(11);
             doc.setFont(undefined, 'bold');
             doc.setTextColor(0, 0, 0);
@@ -513,7 +500,6 @@
             });
             yPos += 3;
             
-            // Job 2
             doc.setFontSize(11);
             doc.setFont(undefined, 'bold');
             doc.text('Desktop Support Engineer', leftMargin, yPos);
@@ -521,3 +507,13 @@
             doc.setFontSize(10);
             doc.text('Nov 2019 - Jan 2021', 150, yPos);
             yPos += 5;
+            
+            doc.setTextColor(79, 70, 229);
+            doc.text('Team Computer', leftMargin, yPos);
+            yPos += 6;
+            
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(9);
+            const exp2 = [
+                '• Provided technical support for hybrid Windows/Linux environments',
+                '• Managed Group Policies, LAN/VPN connectivity, and remote troublesho
